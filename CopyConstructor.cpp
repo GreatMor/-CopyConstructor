@@ -49,12 +49,55 @@ public:
 
         cout << "'operator =' called \t" << this << endl;
 
-        return *this;
+        return *this; 
     }
     ~MyClass()
     {
         delete[] data;
         cout << "destructor called \t " << this << endl;
+    }
+};
+
+class Point
+{
+private:
+    int x = 0;
+    int y = 0;
+
+public:
+    Point(int value_1, int value_2)
+    {
+        x = value_1;
+        y = value_2;
+    }
+
+    void SetX(int _x)
+    {
+        x = _x;
+    }
+
+    void SetY(int _y)
+    {
+        y = _y;
+    }
+
+    int GetX()
+    {
+        return x;
+    }
+    int GetY()
+    {
+        return y;
+    }
+
+    bool operator ==(const Point& other)
+    {
+        return this->x == other.x && this->y == other.y;
+    }
+
+    bool operator !=(const Point& other)
+    {
+        return !(this->x == other.x && this->y == other.y);
     }
 };
 
@@ -65,6 +108,13 @@ int main()
     MyClass B(2);
     MyClass C(14);
     C = B = A;
+    Point a(2, 23);
+    Point b(2, 2);
+
+    bool test = a != b;
+
+    cout << test << endl;
+
     return 0;
 }
 
