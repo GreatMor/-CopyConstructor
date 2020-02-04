@@ -62,9 +62,15 @@ class Point
 {
 private:
     int x = 0;
-    int y = 0;
+    int y = 0;  
 
 public:
+
+    Point()
+    {
+        x = 0;
+        y = 0;
+    }
     Point(int value_1, int value_2)
     {
         x = value_1;
@@ -99,6 +105,16 @@ public:
     {
         return !(this->x == other.x && this->y == other.y);
     }
+
+    Point operator +(const Point& other)
+    {
+        Point themp;
+        themp.x = this->x + other.x;
+        themp.y = this->y + other.y;
+        return themp;
+    }
+
+
 };
 
 int main()  
@@ -108,12 +124,14 @@ int main()
     MyClass B(2);
     MyClass C(14);
     C = B = A;
-    Point a(2, 23);
-    Point b(2, 2);
 
-    bool test = a != b;
+    Point a(11, 23);
+    Point b(1, 23);
 
-    cout << test << endl;
+    Point z = a + b;
+    bool test = a == b;
+
+    //cout << z << endl;
 
     return 0;
 }
