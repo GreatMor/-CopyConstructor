@@ -30,6 +30,27 @@ public:
         }
         cout << "copy constructor called \t" << this << endl;
     }
+
+    MyClass& operator =(const MyClass& other)
+    {
+        this->Size = other.Size;
+
+        if (this->data!=nullptr)
+        {
+            delete this->data; //free earlier allocated memory for array
+        }
+
+        this->data = new int[other.Size]; // a new memory area is allocated.Its size is equal to the size from which we are copied
+
+        for (int i = 0; i < other.Size; i++)
+        {
+            this->data[i] = other.Size;// copy data from the old array to the new
+        }
+
+        cout << "'operator =' called \t" << this << endl;
+
+        return *this;
+    }
     ~MyClass()
     {
         delete[] data;
@@ -37,12 +58,13 @@ public:
     }
 };
 
-int main()
+int main()  
 {
     
     MyClass A(1);
-    MyClass B(A);
-
+    MyClass B(2);
+    MyClass C(14);
+    C = B = A;
     return 0;
 }
 
